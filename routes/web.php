@@ -23,6 +23,10 @@ Rout::get('a',function (){
     return 'a';
 
 });
+    Rout::get('b',function (){
+        return 'b';
+
+    });
     $data = array(
         'name' => "Learning Laravel",
     );
