@@ -44,6 +44,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception->getPrevious() instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
+            return response()->json(['error' => $exception->getPrevious()->getMessage()], $exception->getStatusCode());
+        } else if ($exception->getPrevious() instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
+            return response()->json(['error' => $exception->getPrevious()->getMessage()], $exception->getStatusCode());
+        }else if($exception->getPrevious() instanceof \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException){
+
+            return response()->json(['error' => $exception->getPrevious()->getMessage()], $exception->getStatusCode());
+        }
         return parent::render($request, $exception);
     }
 
@@ -59,6 +67,7 @@ class Handler extends ExceptionHandler
         if ($request->expectsJson()) {
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
+
 
         return redirect()->guest(route('login'));
     }

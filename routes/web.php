@@ -23,8 +23,9 @@ Rout::get('a',function (){
     return 'a';
 
 });
-    Rout::get('b',function (){
-        return 'b';
+
+    Rout::get('c',function (){
+        return 'c';
 
     });
     $data = array(

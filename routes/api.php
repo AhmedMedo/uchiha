@@ -28,4 +28,9 @@ Route::group(['middleware' => ['jwt.auth']], function() {
     Route::get('test', function(){
         return response()->json(['foo'=>'bar']);
     });
+
+
+});
+Route::get('test_a', function(){
+    return response()->json(['foo'=>'bar']);
 });

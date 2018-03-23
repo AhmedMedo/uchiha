@@ -151,14 +151,11 @@ class AuthController extends Controller
     }
 
     public function getAuthUser(Request $request){
-    	try {
+
     		$user = JWTAuth::toUser($request->token);
         	return response()->json(['result' => $user]);
     		
-    	} catch (UnauthorizedHttpException $e) {
-    		return response()->json(['success' => false, 'error' => 'invalid Token.'], 500);
-    		
-    	}
+
 		    	
 
 		     //    return ['error' => false, 'token' => JWTAuth::getToken()];
